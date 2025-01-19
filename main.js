@@ -1,6 +1,6 @@
 import { meet } from '@googleworkspace/meet-addons/meet.addons';
 
-const CLOUD_PROJECT_NUMBER = 'CLOUD_PROJECT_NUMBER';
+const CLOUD_PROJECT_NUMBER = 'adroit-bonsai-448300-v5';
 const MAIN_STAGE_URL = 'MAIN_STAGE_URL';
 
 /**
@@ -19,4 +19,15 @@ export async function setUpAddon() {
                 mainStageUrl: MAIN_STAGE_URL
             });
         });
+}
+
+/**
+ * Prepares the Add-on Main Stage Client, which signals that the add-on has
+ * successfully launched in the main stage.
+ */
+export async function initializeMainStage() {
+    const session = await meet.addon.createAddonSession({
+        cloudProjectNumber: CLOUD_PROJECT_NUMBER,
+    });
+    await session.createMainStageClient();
 }
